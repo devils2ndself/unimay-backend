@@ -6,7 +6,7 @@ const { createSuccessResponse } = require("../response");
 
 const router = express.Router();
 
-// router.use(`/v1`, authenticate(), require("./api"));
+router.use(`/api`, require("./api"));
 
 router.get("/", (req, res) => {
     // Health-check = no-caches
