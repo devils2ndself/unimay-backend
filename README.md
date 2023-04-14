@@ -51,6 +51,17 @@
     -   Back-end: AWS EC2 - t3.nano/t3.micro
     -   DB: front-end hosting
 
+## Бюджет (у USD)
+
+*2022/04/13*  
+1 USD ($) ~ 37 UAH (₴)  
+
+- Front-end + MySQL: ₴2100/year ~ $56/year
+- Domain: ₴600-1000 ~ $15-25
+- Back-end - AWS EC2: ~$35/year
+
+Усього: ~$100-120/year
+
 ## Дизайн бази даних
 
 ![image](https://user-images.githubusercontent.com/71770433/231929790-51c9b2af-bf0f-4bd6-b24f-3203fe4c89b0.png)
