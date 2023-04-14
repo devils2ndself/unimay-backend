@@ -53,4 +53,4 @@
 
 ## Дизайн бази даних
 
-_TBA_
+![image](https://user-images.githubusercontent.com/71770433/231927198-1e9ebffa-904a-4548-8aae-eb88d0bee777.png)
