@@ -53,4 +53,5 @@
 
 ## Дизайн бази даних
 
-![image](https://user-images.githubusercontent.com/71770433/231927198-1e9ebffa-904a-4548-8aae-eb88d0bee777.png)
+![image](https://user-images.githubusercontent.com/71770433/231929790-51c9b2af-bf0f-4bd6-b24f-3203fe4c89b0.png)
+
