@@ -3,6 +3,7 @@ require("dotenv").config({
 });
 
 const logger = require("./logger");
+const db = require("./models");
 
 process.on("uncaughtException", (err, origin) => {
     logger.fatal({ err, origin }, "uncaughtException");
@@ -14,4 +15,10 @@ process.on("unhandledRejection", (reason, promise) => {
     throw reason;
 });
 
-require("./server");
+db.init()
+    .then(() => {
+        require("./server");
+    })
+    .catch((err) => {
+        logger.fatal(err, "Unable to connect to DB");
+    });
