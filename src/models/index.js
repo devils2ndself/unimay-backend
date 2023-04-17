@@ -15,16 +15,15 @@ async function init() {
     await sequelize.sync();
 }
 
-const Title = require("./title");
-const Genre = require("./genre");
-const Player = require("./player");
+const Title = require("./title")(sequelize, DataTypes);
+const Genre = require("./genre")(sequelize, DataTypes);
+const Player = require("./player")(sequelize, DataTypes);
 // TODO: other models
 
 // TODO: associations
 
 module.exports = {
     sequelize,
-    DataTypes,
     init,
     Title,
     Genre,
