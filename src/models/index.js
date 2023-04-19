@@ -18,9 +18,19 @@ async function init() {
 const Title = require("./title")(sequelize, DataTypes);
 const Genre = require("./genre")(sequelize, DataTypes);
 const Player = require("./player")(sequelize, DataTypes);
-// TODO: other models
+const Member = require("./member")(sequelize, DataTypes);
+const MemberLink = require("./memberLink")(sequelize, DataTypes);
+const Service = require("./service")(sequelize, DataTypes);
+const Partner = require("./partner")(sequelize, DataTypes);
 
-// TODO: associations
+Title.hasMany(Player, { foreignKey: "titleId" });
+Player.belongsTo(Title);
+
+Title.belongsToMany(Genre, { through: "GenreTitles" });
+Genre.belongsToMany(Title, { through: "GenreTitles" });
+
+Member.hasMany(MemberLink, { foreignKey: "memberId" });
+MemberLink.belongsTo(Member);
 
 module.exports = {
     sequelize,
@@ -28,4 +38,8 @@ module.exports = {
     Title,
     Genre,
     Player,
+    Member,
+    MemberLink,
+    Service,
+    Partner,
 };
