@@ -7,12 +7,8 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const titles = await db.Title.findAll({
-            attributes: { exclude: ["image", "imageType"] },
-            include: db.Genre,
-        });
-
-        res.status(200).json(createSuccessResponse({ data: titles }));
+        const genres = await db.Genre.findAll();
+        res.status(200).json(createSuccessResponse({ data: genres }));
     } catch (error) {
         logger.warn(error);
         res.status(500).json(createErrorResponse(500, "internal error"));
