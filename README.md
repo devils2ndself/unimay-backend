@@ -1,5 +1,48 @@
 # Unimay Media
 
+This project is the backend (REST API) for the Unimay Media website.
+
+## Setting up the server
+
+Make sure you have a `.env` file in the project root directotry with MySQL database information:
+
+```
+DB_DATABASE=database
+DB_HOST=host
+DB_USER=user
+DB_PASSWORD=password
+```
+
+## Downloading NPM packages
+
+Regular option:
+
+```
+npm install
+```
+
+Production mode:
+
+```
+npm install --omit=dev
+```
+
+## Running the server
+
+To run the development mode, run the following:
+
+```
+npm run dev
+```
+
+To run server in production mode, run the following:
+
+```
+npm start
+```
+
+# System Design (in Ukrainian)
+
 ## Опис проєкту
 
 Сайт виступає візиткою команди Unimay Media, яка дає можливість ознайомитись з проєктами команди, її членами, та знайти інформацію з приводу партнерства/фідбеку.
@@ -53,12 +96,12 @@
 
 ## Бюджет (у USD)
 
-*2022/04/13*  
-1 USD ($) ~ 37 UAH (₴)  
+_2022/04/13_  
+1 USD ($) ~ 37 UAH (₴)
 
-- Front-end + MySQL: ₴2100/year ~ $56/year
-- Domain: ₴600-1000 ~ $15-25
-- Back-end - AWS EC2: ~$35/year
+-   Front-end + MySQL: ₴2100/year ~ $56/year
+-   Domain: ₴600-1000 ~ $15-25
+-   Back-end - AWS EC2: ~$35/year
 
 Усього: ~$100-120/year
 
@@ -66,3 +109,6 @@
 
 ![image](https://user-images.githubusercontent.com/71770433/231929790-51c9b2af-bf0f-4bd6-b24f-3203fe4c89b0.png)
 
+## Архітектура
+
+_TBA_
