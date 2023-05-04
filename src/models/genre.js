@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Genre = sequelize.define("genre", {
         id: {
@@ -12,5 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Genre;
+    const genreSchema = object({
+        name: string().required("Genre is required").max(254),
+    });
+
+    return { Genre, genreSchema };
 };

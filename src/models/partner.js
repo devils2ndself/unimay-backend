@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Partner = sequelize.define("partner", {
         id: {
@@ -25,7 +27,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: null,
         },
+        link: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+            defaultValue: null,
+        },
     });
 
-    return Partner;
+    const partnerSchema = object({
+        name: string().required("Name is required").max(254),
+        description: string().notRequired().max(2046),
+        link: string().notRequired().max(254),
+    });
+
+    return { Partner, partnerSchema };
 };

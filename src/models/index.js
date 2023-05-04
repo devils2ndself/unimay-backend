@@ -15,13 +15,16 @@ async function init() {
     await sequelize.sync();
 }
 
-const Title = require("./title")(sequelize, DataTypes);
-const Genre = require("./genre")(sequelize, DataTypes);
-const Player = require("./player")(sequelize, DataTypes);
-const Member = require("./member")(sequelize, DataTypes);
-const MemberLink = require("./memberLink")(sequelize, DataTypes);
-const Service = require("./service")(sequelize, DataTypes);
-const Partner = require("./partner")(sequelize, DataTypes);
+const { Title, titleSchema } = require("./title")(sequelize, DataTypes);
+const { Genre, genreSchema } = require("./genre")(sequelize, DataTypes);
+const { Player, playerSchema } = require("./player")(sequelize, DataTypes);
+const { Member, memberSchema } = require("./member")(sequelize, DataTypes);
+const { MemberLink, memberLinkSchema } = require("./memberLink")(
+    sequelize,
+    DataTypes
+);
+const { Service, serviceSchema } = require("./service")(sequelize, DataTypes);
+const { Partner, partnerSchema } = require("./partner")(sequelize, DataTypes);
 
 Title.hasMany(Player, { foreignKey: "titleId" });
 Player.belongsTo(Title);
@@ -35,6 +38,7 @@ MemberLink.belongsTo(Member);
 module.exports = {
     sequelize,
     init,
+
     Title,
     Genre,
     Player,
@@ -42,4 +46,12 @@ module.exports = {
     MemberLink,
     Service,
     Partner,
+
+    titleSchema,
+    genreSchema,
+    playerSchema,
+    memberSchema,
+    memberLinkSchema,
+    serviceSchema,
+    partnerSchema,
 };

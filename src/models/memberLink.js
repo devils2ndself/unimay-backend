@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const MemberLink = sequelize.define("memberLink", {
         id: {
@@ -16,5 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return MemberLink;
+    const memberLinkSchema = object({
+        link: string().required("Link is required").max(254),
+        icon: string().notRequired().max(254),
+    });
+
+    return { MemberLink, memberLinkSchema };
 };

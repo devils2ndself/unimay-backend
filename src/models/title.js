@@ -1,3 +1,5 @@
+const { object, string, number } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Title = sequelize.define("title", {
         id: {
@@ -20,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: null,
         },
-        contry: {
+        country: {
             type: DataTypes.STRING(255),
             allowNull: true,
             defaultValue: null,
@@ -47,5 +49,14 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Title;
+    const titleSchema = object({
+        name: string().required("Name is required").max(254),
+        country: string().notRequired().max(254),
+        year: number().notRequired().min(0).max(3000),
+        description: string().notRequired().max(2046),
+        directors: string().notRequired().max(254),
+        actors: string().notRequired().max(254),
+    });
+
+    return { Title, titleSchema };
 };

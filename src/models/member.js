@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Member = sequelize.define("member", {
         id: {
@@ -27,5 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Member;
+    const memberSchema = object({
+        name: string().required("Name is required").max(254),
+        description: string().notRequired().max(2046),
+    });
+
+    return { Member, memberSchema };
 };

@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Service = sequelize.define("service", {
         id: {
@@ -17,5 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Service;
+    const serviceSchema = object({
+        name: string().required("Name is required").max(254),
+        description: string().notRequired().max(2046),
+    });
+
+    return { Service, serviceSchema };
 };

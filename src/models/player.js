@@ -1,3 +1,5 @@
+const { object, string } = require("yup");
+
 module.exports = (sequelize, DataTypes) => {
     const Player = sequelize.define("player", {
         id: {
@@ -21,5 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Player;
+    const playerSchema = object({
+        name: string().required("Name is required").max(254),
+        embedLink: string().required("Embed link is required").max(254),
+        source: string().notRequired().max(254),
+    });
+
+    return { Player, playerSchema };
 };
