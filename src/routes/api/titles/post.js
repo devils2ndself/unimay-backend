@@ -8,7 +8,10 @@ const { ValidationError } = require("yup");
 
 module.exports = async (req, res) => {
     try {
-        let data = await db.titleSchema.validate(req.body);
+        const data = await db.titleSchema.validate(req.body);
+        if (req.params?.id) {
+            data.id = req.params.id;
+        }
         const image = req.file ? req.file.buffer : null;
         const imageType = req.file ? req.file.mimetype : null;
 
@@ -35,7 +38,7 @@ module.exports = async (req, res) => {
         delete response.imageType;
         response.imageURL = location + "/image";
 
-        res.status(200)
+        res.status(201)
             .set({
                 Location: location,
             })

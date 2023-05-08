@@ -5,28 +5,30 @@ const {
 } = require("../../../response");
 const db = require("../../../models");
 const { ValidationError } = require("yup");
+const createGenre = require("./post");
 
 module.exports = async (req, res) => {
     try {
-        const data = await db.genreSchema.validate(req.body);
-        if (req.params?.id) {
-            data.id = req.params.id;
+        const genre = await db.Genre.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if (!genre) {
+            await createGenre(req, res);
+            return;
         }
-        const genre = await db.Genre.create({ ...data });
 
-        const location =
-            req.protocol +
-            "://" +
-            req.get("host") +
-            req.originalUrl +
-            "/" +
-            genre.dataValues.id.toString();
+        const data = await db.genreSchema.validate(req.body);
+        await genre.update({ ...data });
 
-        res.status(201)
-            .set({ Location: location })
-            .json(
-                createSuccessResponse({ message: "genre created", data: genre })
-            );
+        res.status(200).json(
+            createSuccessResponse({
+                message: "genre updated",
+                data: genre,
+            })
+        );
     } catch (error) {
         logger.warn(error);
         if (error instanceof ValidationError) {

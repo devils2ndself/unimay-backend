@@ -7,20 +7,30 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const title = await db.Title.findOne({
-            attributes: { exclude: ["image", "imageType"] },
+        const genre = await db.Genre.findOne({
             where: {
                 id: req.params.id,
             },
-            include: [db.Genre, db.Player],
         });
 
-        if (!title) {
-            res.status(404).json(createErrorResponse(404, "title not found"));
+        if (!genre) {
+            res.status(200).json(
+                createSuccessResponse({
+                    message: "genre not found",
+                    data: null,
+                })
+            );
             return;
         }
 
-        res.status(200).json(createSuccessResponse({ data: title }));
+        await genre.destroy();
+
+        res.status(200).json(
+            createSuccessResponse({
+                message: "genre deleted",
+                data: null,
+            })
+        );
     } catch (error) {
         logger.warn(error);
         res.status(500).json(createErrorResponse(500, "internal error"));
