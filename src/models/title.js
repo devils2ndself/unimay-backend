@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const titleSchema = object({
-        name: string().required("Name is required").max(254),
+        name: string().required("'name' is required").max(254),
         country: string().notRequired().max(254),
         year: number().notRequired().min(0).max(3000),
         description: string().notRequired().max(2046),

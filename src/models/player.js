@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const playerSchema = object({
-        name: string().required("Name is required").max(254),
-        embedLink: string().required("Embed link is required").max(254),
+        name: string().required("'name' is required").max(254),
+        embedLink: string().required("'embedLink' is required").max(254),
         source: string().notRequired().max(254),
     });
 

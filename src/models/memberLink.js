@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const memberLinkSchema = object({
-        link: string().required("Link is required").max(254),
+        link: string().required("'link' is required").max(254),
         icon: string().notRequired().max(254),
     });
 

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const genreSchema = object({
-        name: string().required("Genre is required").max(254),
+        name: string().required("'name' is required").max(254),
     });
 
     return { Genre, genreSchema };

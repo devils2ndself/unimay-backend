@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const partnerSchema = object({
-        name: string().required("Name is required").max(254),
+        name: string().required("'name' is required").max(254),
         description: string().notRequired().max(2046),
         link: string().notRequired().max(254),
     });

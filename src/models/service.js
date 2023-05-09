@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     const serviceSchema = object({
-        name: string().required("Name is required").max(254),
+        name: string().required("'name' is required").max(254),
         description: string().notRequired().max(2046),
     });
 
