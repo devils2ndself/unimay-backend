@@ -42,7 +42,12 @@ module.exports = async (req, res) => {
             .set({
                 Location: location,
             })
-            .json(createSuccessResponse({ data: response }));
+            .json(
+                createSuccessResponse({
+                    message: "title created",
+                    data: response,
+                })
+            );
     } catch (error) {
         logger.warn(error);
         if (error instanceof ValidationError) {
