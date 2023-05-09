@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
             ...data,
             image: image,
             imageType: imageType,
+
+            // TODO: include genres
         });
 
         const location =

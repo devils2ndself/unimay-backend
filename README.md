@@ -41,6 +41,56 @@ To run server in production mode, run the following:
 npm start
 ```
 
+## Response
+
+### Structure
+
+-   Success
+
+    ```
+    {
+        "status": "ok",
+        "message": "{{ optional, usually on status 201 }}",
+        "data": {{ null / object / array }}
+    }
+    ```
+
+-   Error
+
+    ```
+    {
+        "status": "error",
+        "error": {
+            "code": {{ HTTP status code }},
+            "message": "{{ meaningful error message }}"
+        }
+    }
+    ```
+
+### Endpoints
+
+-   Titles
+
+    -   GET - All: `/api/titles`
+    -   GET - By Id: `/api/titles/:id`
+    -   GET - Image by Id: `/api/titles/:id/image`
+    -   POST: `/api/titles`
+    -   DELETE: `/api/titles/:id`
+    -   PUT: `/api/titles/:id`
+
+-   Players
+
+    -   POST - By title and Id: `/api/titles/:titleId/players/:id`
+    -   PUT - By title and Id: `/api/titles/:titleId/players/:id`
+    -   DELETE - Title is not needed: `/api/players/:id`
+
+-   Genres
+
+    -   GET - All: `/api/genres`
+    -   POST: `/api/genres`
+    -   PUT: `/api/genres/:id`
+    -   DELETE: `/api/genres/:id`
+
 # System Design (in Ukrainian)
 
 ## Опис проєкту
