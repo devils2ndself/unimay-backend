@@ -7,4 +7,5 @@ module.exports = {
         dialect: process.env.DB_DIALECT || "mysql",
     },
     port: parseInt(process.env.PORT || 8080, 10),
+    maxImageSize: 2000000,
 };
