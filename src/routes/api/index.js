@@ -6,13 +6,14 @@ router.get("/titles", require("./titles/get"));
 router.get("/titles/:id", require("./titles/getId"));
 router.get("/titles/:id/image", require("./titles/getIdImage"));
 router.post("/titles", upload.single("image"), require("./titles/post"));
-// TODO: titles: delete, put, deletePlayer, putPlayer
+// TODO: titles: delete, put, putPlayer
 
 router.post(
-    "/titles/:titleId/player",
+    "/titles/:titleId/players",
     upload.none(),
-    require("./titles/player/post")
+    require("./titles/players/post")
 );
+router.delete("/players/:id", require("./titles/players/delete"));
 
 router.get("/genres", require("./genres/get"));
 router.post("/genres", upload.none(), require("./genres/post"));
