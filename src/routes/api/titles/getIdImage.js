@@ -4,11 +4,8 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const titleImage = await db.Title.findOne({
+        const titleImage = await db.Title.findByPk(req.params.id, {
             attributes: ["image", "imageType"],
-            where: {
-                id: req.params.id,
-            },
             include: db.Genre,
         });
 

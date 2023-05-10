@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     try {
         const titles = await db.Title.findAll({
             attributes: { exclude: ["image", "imageType"] },
-            include: db.Genre,
+            include: [{ model: db.Genre, through: { attributes: [] } }],
         });
 
         res.status(200).json(createSuccessResponse({ data: titles }));

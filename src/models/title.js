@@ -1,4 +1,4 @@
-const { object, string, number } = require("yup");
+const { object, string, number, array } = require("yup");
 
 module.exports = (sequelize, DataTypes) => {
     const Title = sequelize.define("title", {
@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         description: string().notRequired().max(2046),
         directors: string().notRequired().max(254),
         actors: string().notRequired().max(254),
+        genres: array().optional().of(string()),
     });
 
     return { Title, titleSchema };

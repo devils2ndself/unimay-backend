@@ -7,12 +7,15 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const title = await db.Title.findOne({
+        const title = await db.Title.findByPk(req.params.id, {
             attributes: { exclude: ["image", "imageType"] },
-            where: {
-                id: req.params.id,
-            },
-            include: [db.Genre, db.Player],
+            include: [
+                {
+                    model: db.Genre,
+                    through: { attributes: [] },
+                },
+                db.Player,
+            ],
         });
 
         if (!title) {
