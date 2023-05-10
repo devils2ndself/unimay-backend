@@ -26,9 +26,6 @@ module.exports = async (req, res) => {
 
         if (data.genres) {
             for (let genreId of data.genres) {
-                console.log("====================================");
-                console.log(data.genres);
-                console.log("====================================");
                 const genre = await db.Genre.findOne({
                     where: {
                         id: genreId,
