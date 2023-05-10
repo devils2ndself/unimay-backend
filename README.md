@@ -160,6 +160,7 @@ _2022/04/13_
 
 ![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/b8729311-f82f-46b6-bfa4-3ba5515e916b)
 
-## Архітектура
+## [Архітектура](https://lucid.app/lucidchart/a0421e16-3de9-40a8-bfce-df7b7dd06143/edit?viewport_loc=-128%2C6%2C2016%2C968%2C0_0&invitationId=inv_03b17de1-7521-4256-883e-050b2b2b2d2a)
 
-_TBA_
+![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/c485a921-0e1b-41d7-b9fe-6b14593b1777)
+
