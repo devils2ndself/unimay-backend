@@ -75,8 +75,8 @@ npm start
     -   GET - By Id: `/api/titles/:id`
     -   GET - Image by Id: `/api/titles/:id/image`
     -   POST: `/api/titles`
-    -   DELETE: `/api/titles/:id`
-    -   PUT: `/api/titles/:id`
+    -   DELETE: `/api/titles/:id` - *not done yet*
+    -   PUT: `/api/titles/:id` - *not done yet*
 
 -   Players
 
@@ -158,7 +158,7 @@ _2022/04/13_
 
 ## Дизайн бази даних
 
-![image](https://user-images.githubusercontent.com/71770433/231929790-51c9b2af-bf0f-4bd6-b24f-3203fe4c89b0.png)
+![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/b8729311-f82f-46b6-bfa4-3ba5515e916b)
 
 ## Архітектура
 
