@@ -39,15 +39,23 @@ module.exports = async (req, res) => {
             }
         }
 
-        const title = await db.Title.create({
-            ...data,
-            image: image,
-            imageType: imageType,
+        const title = await db.sequelize.transaction(async (t) => {
+            const title = await db.Title.create(
+                {
+                    ...data,
+                    image: image,
+                    imageType: imageType,
+                },
+                { transaction: t }
+            );
+
+            if (data.genres) {
+                await title.setGenres(data.genres, { transaction: t });
+            }
+
+            return title;
         });
 
-        if (data.genres) {
-            await title.setGenres(data.genres);
-        }
         await title.reload({ include: [db.Genre, db.Player] });
 
         const location =

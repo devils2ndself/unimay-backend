@@ -25,11 +25,13 @@ module.exports = async (req, res) => {
             },
         });
 
-        for (let player of players) {
-            await player.destroy();
-        }
+        await db.sequelize.transaction(async (t) => {
+            for (let player of players) {
+                await player.destroy({ transaction: t });
+            }
 
-        await title.destroy();
+            await title.destroy({ transaction: t });
+        });
 
         res.status(201).json(
             createSuccessResponse({
