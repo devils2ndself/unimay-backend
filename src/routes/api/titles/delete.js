@@ -1,4 +1,3 @@
-// TODO
 const logger = require("../../../logger");
 const {
     createSuccessResponse,
