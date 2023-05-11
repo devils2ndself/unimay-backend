@@ -7,11 +7,7 @@ const db = require("../../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const player = await db.Player.findOne({
-            where: {
-                id: req.params.id,
-            },
-        });
+        const player = await db.Player.findByPk(req.params.id);
 
         if (!player) {
             res.status(201).json(

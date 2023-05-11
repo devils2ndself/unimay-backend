@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const base_url = "http://localhost:8080";
+
+            fetch(`${base_url}/api/genres`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.status != "ok") {
+                        throw Error(data.error?.message);
+                    }
+                    const genresSelect = document.getElementById("genres");
+                    data.data.map((genre, i) => {
+                        let option = document.createElement("option");
+                        option.value = genre.id;
+                        option.innerHTML = genre.name;
+                        genresSelect.append(option);
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+            function postTitle(e, form) {
+                e.preventDefault();
+
+                fetch(`${base_url}/api/titles`, {
+                    method: "post",
+                    body: new FormData(document.getElementById("myForm")),
+                })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        console.log(data);
+                        //Success code goes here
+                        if (data.status != "ok") {
+                            throw Error(data.error?.message);
+                        }
+                        alert("title created");
+                    })
+                    .catch(function (err) {
+                        //Failure
+                        alert(err.message);
+                    });
+            }
+        </script>
+        <style>
+            label {
+                margin-right: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Створити тайтл</h1>
+        <p></p>
+        <form
+            enctype="multipart/form-data"
+            id="myForm"
+            onsubmit="postTitle(event, this)"
+        >
+            <label for="name">Назва</label>
+            <input type="text" name="name" value="Дуже справжнє аніме" />
+            <br />
+            <label for="image">Картинка (обмеження у 2МБ)</label>
+            <input type="file" name="image" />
+            <br />
+            <label for="country">Країна</label>
+            <input type="text" name="country" value="Ukraine" />
+            <br />
+            <label for="year">Рік</label>
+            <input type="number" name="year" value="2022" />
+            <br />
+            <label for="description">Опис</label>
+            <textarea type="textarea" name="description">
+Це аніме я точно не придумав сам. Воно правда існує. Я не брешу, будь ласка повірте мені!
+            </textarea>
+            <br />
+            <label for="directors">Режисери</label>
+            <input type="text" name="directors" value="Я (режисер)" />
+            <br />
+            <label for="actors">Актори</label>
+            <input type="text" name="actors" value="Я (актор)" />
+            <br />
+            <label for="genres">Жанри</label>
+            <select multiple name="genres" id="genres"></select>
+            <br />
+            <button type="submit">Створити</button>
+        </form>
+    </body>
+</html>
