@@ -75,7 +75,7 @@ npm start
     -   GET - By Id: `/api/titles/:id`
     -   GET - Image by Id: `/api/titles/:id/image`
     -   POST: `/api/titles`
-    -   DELETE: `/api/titles/:id` - _not done yet_
+    -   DELETE: `/api/titles/:id`
     -   PUT: `/api/titles/:id` - _not done yet_
 
 -   Players
