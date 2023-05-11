@@ -75,11 +75,12 @@ npm start
     -   GET - By Id: `/api/titles/:id`
     -   GET - Image by Id: `/api/titles/:id/image`
     -   POST: `/api/titles`
-    -   DELETE: `/api/titles/:id` - *not done yet*
-    -   PUT: `/api/titles/:id` - *not done yet*
+    -   DELETE: `/api/titles/:id` - _not done yet_
+    -   PUT: `/api/titles/:id` - _not done yet_
 
 -   Players
 
+    -   GET - All: `/api/players`
     -   POST - By title and Id: `/api/titles/:titleId/players/:id`
     -   PUT - By title and Id: `/api/titles/:titleId/players/:id`
     -   DELETE - Title is not needed: `/api/players/:id`
@@ -163,4 +164,3 @@ _2022/04/13_
 ## [Архітектура](https://lucid.app/lucidchart/a0421e16-3de9-40a8-bfce-df7b7dd06143/edit?viewport_loc=-128%2C6%2C2016%2C968%2C0_0&invitationId=inv_03b17de1-7521-4256-883e-050b2b2b2d2a)
 
 ![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/c485a921-0e1b-41d7-b9fe-6b14593b1777)
-
