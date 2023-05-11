@@ -9,11 +9,7 @@ const createGenre = require("./post");
 
 module.exports = async (req, res) => {
     try {
-        const genre = await db.Genre.findOne({
-            where: {
-                id: req.params.id,
-            },
-        });
+        const genre = await db.Genre.findByPk(req.params.id);
 
         if (!genre) {
             await createGenre(req, res);

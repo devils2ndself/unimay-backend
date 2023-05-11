@@ -17,11 +17,8 @@ module.exports = async (req, res) => {
             data.id = req.params.id;
         }
 
-        const title = await db.Title.findOne({
-            attributes: { exclude: ["image", "imageType"] },
-            where: {
-                id: data.titleId,
-            },
+        const title = await db.Title.findByPk(data.titleId, {
+            attributes: ["id"],
         });
         if (!title) {
             throw new ValidationError("Associated title is not found");
