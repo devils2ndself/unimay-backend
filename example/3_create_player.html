@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const base_url = "http://localhost:8080";
+
+            fetch(`${base_url}/api/titles`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.status != "ok") {
+                        throw Error(data.error?.message);
+                    }
+                    const titlesSelect = document.getElementById("titles");
+                    data.data.map((genre, i) => {
+                        let option = document.createElement("option");
+                        option.value = genre.id;
+                        option.innerHTML = genre.name;
+                        titlesSelect.append(option);
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+            function postTitle(e, form) {
+                e.preventDefault();
+
+                let titleId = document.getElementById("titles").value;
+
+                fetch(`${base_url}/api/titles/${titleId}/players`, {
+                    method: "post",
+                    body: new FormData(document.getElementById("myForm")),
+                })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        console.log(data);
+                        //Success code goes here
+                        if (data.status != "ok") {
+                            throw Error(data.error?.message);
+                        }
+                        alert("player created");
+                    })
+                    .catch(function (err) {
+                        //Failure
+                        alert(err.message);
+                    });
+            }
+        </script>
+        <style>
+            label {
+                margin-right: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Створити плеєр</h1>
+
+        <!-- titles select is NOT part of the form -->
+        <select id="titles"></select>
+
+        <form
+            enctype="multipart/form-data"
+            id="myForm"
+            onsubmit="postTitle(event, this)"
+        >
+            <label for="name">Назва</label>
+            <input type="text" name="name" value="Трейлер" />
+            <br />
+            <label for="embedLink">Посилання для iframe</label>
+            <input
+                type="text"
+                name="embedLink"
+                value="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            />
+            <br />
+            <label for="source">Джерело посилання*</label>
+            <input type="text" name="source" value="" />
+            <br />
+            <button type="submit">Створити</button>
+        </form>
+        <br />
+        <p>
+            Джерело посилання ніяк не використовується сервером.
+            <br />
+            Воно зроблено для можливої оптимізації HTML-тега iframe на
+            фронт-енді.
+        </p>
+    </body>
+</html>

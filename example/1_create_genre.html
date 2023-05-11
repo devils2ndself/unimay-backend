@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const base_url = "http://localhost:8080";
+            function postGenre(e, form) {
+                e.preventDefault();
+
+                fetch(`${base_url}/api/genres`, {
+                    method: "post",
+                    body: new FormData(document.getElementById("myForm")),
+                })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        console.log(data);
+                        //Success code goes here
+                        if (data.status != "ok") {
+                            throw Error(data.error?.message);
+                        }
+                        alert("genre created");
+                    })
+                    .catch(function (err) {
+                        //Failure
+                        alert(err.message);
+                    });
+            }
+        </script>
+        <style>
+            label {
+                margin-right: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Створити жанр</h1>
+        <form
+            enctype="multipart/form-data"
+            id="myForm"
+            onsubmit="postGenre(event, this)"
+        >
+            <label for="name">Жанр</label>
+            <input type="text" name="name" value="Аніме" />
+            <br />
+            <button type="submit">Створити</button>
+        </form>
+    </body>
+</html>

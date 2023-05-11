@@ -2,7 +2,9 @@
 
 This project is the backend (REST API) for the Unimay Media website.
 
-## Setting up the server
+## Setting up SQL database
+
+The server requires an SQL database for operating.
 
 Make sure you have a `.env` file in the project root directotry with MySQL database information:
 
@@ -12,6 +14,18 @@ DB_HOST=host
 DB_USER=user
 DB_PASSWORD=password
 ```
+
+If the SQL database in use is not MySQL, make sure to add the following line:
+
+```
+DB_DIALECT=postgres
+```
+
+`postgres` is an example out of these possible dialects: `mysql`, `postgres`, `sqlite`, `db2`, `mariadb`, `mssql`.
+
+Before running the server, make sure that `database` (or schema) from `.env` exists in the database.
+
+The server will automatically create tables on first run.
 
 ## Downloading NPM packages
 
@@ -76,7 +90,7 @@ npm start
     -   GET - Image by Id: `/api/titles/:id/image`
     -   POST: `/api/titles`
     -   DELETE: `/api/titles/:id`
-    -   PUT: `/api/titles/:id` - _not done yet_
+    -   PUT: `/api/titles/:id`
 
 -   Players
 
@@ -84,6 +98,8 @@ npm start
     -   POST - By title and Id: `/api/titles/:titleId/players/:id`
     -   PUT - By title and Id: `/api/titles/:titleId/players/:id`
     -   DELETE - Title is not needed: `/api/players/:id`
+
+    _Note_: `embedLink` refers to the `src` attribute of `iframe`
 
 -   Genres
 
