@@ -17,10 +17,12 @@ module.exports = async (req, res) => {
         if (req.params?.id) {
             data.id = req.params.id;
         }
-        const image = req.file ? req.file.buffer : null;
-        const imageType = req.file ? req.file.mimetype : null;
+        if (req.file) {
+            data.image = req.file.buffer;
+            data.imageType = req.file.mimetype;
+        }
 
-        if (imageType && !imageType.startsWith("image/")) {
+        if (data.imageType && !data.imageType.startsWith("image/")) {
             throw new ValidationError("File is not an image");
         }
 
@@ -41,11 +43,7 @@ module.exports = async (req, res) => {
 
         const title = await db.sequelize.transaction(async (t) => {
             const title = await db.Title.create(
-                {
-                    ...data,
-                    image: image,
-                    imageType: imageType,
-                },
+                { ...data },
                 { transaction: t }
             );
 

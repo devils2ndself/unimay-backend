@@ -6,8 +6,8 @@ router.get("/titles", require("./titles/get"));
 router.get("/titles/:id", require("./titles/getId"));
 router.get("/titles/:id/image", require("./titles/getIdImage"));
 router.post("/titles", upload.single("image"), require("./titles/post"));
+router.put("/titles/:id", upload.single("image"), require("./titles/put"));
 router.delete("/titles/:id", require("./titles/delete"));
-// TODO: titles: put
 
 router.post(
     "/titles/:titleId/players",
