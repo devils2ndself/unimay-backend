@@ -108,6 +108,12 @@ npm start
     -   PUT: `/api/genres/:id`
     -   DELETE: `/api/genres/:id`
 
+## Request structure
+
+Requests should be of type `multipart/form-data` (or JavaScript's `FormData`).
+
+Field names for the schema can be found in the Database Design section below.
+
 # System Design (in Ukrainian)
 
 ## Опис проєкту
