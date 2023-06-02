@@ -1,7 +1,7 @@
 const { object, string } = require("yup");
 
 module.exports = (sequelize, DataTypes) => {
-    const Member = sequelize.define("member", {
+    const Sequence = sequelize.define("sequence", {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -17,28 +17,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: null,
         },
-        image: {
-            type: DataTypes.BLOB("long"),
-            allowNull: true,
-            defaultValue: null,
-        },
-        imageType: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-            defaultValue: null,
-        },
-        imageLink: {
-            type: DataTypes.STRING(2083),
-            allowNull: true,
-            defaultValue: null,
-        },
     });
 
-    const memberSchema = object({
+    const sequenceSchema = object({
         name: string().required("'name' is required").max(254),
         description: string().notRequired().max(2046),
-        imageLink: string().notRequired().max(2082),
     });
 
-    return { Member, memberSchema };
+    return { Sequence, sequenceSchema };
 };

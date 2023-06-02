@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: null,
         },
+        imageLink: {
+            type: DataTypes.STRING(2083),
+            allowNull: true,
+            defaultValue: null,
+        },
         country: {
             type: DataTypes.STRING(255),
             allowNull: true,
@@ -57,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         directors: string().notRequired().max(254),
         actors: string().notRequired().max(254),
         genres: array().optional().of(string()),
+        imageLink: string().notRequired().max(2082),
     });
 
     return { Title, titleSchema };

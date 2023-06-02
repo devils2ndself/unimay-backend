@@ -16,6 +16,11 @@ async function init() {
 }
 
 const { Title, titleSchema } = require("./title")(sequelize, DataTypes);
+const { Sequence, sequenceSchema } = require("./sequence")(
+    sequelize,
+    DataTypes
+);
+const { Keyword, keywordSchema } = require("./keyword")(sequelize, DataTypes);
 const { Genre, genreSchema } = require("./genre")(sequelize, DataTypes);
 const { Player, playerSchema } = require("./player")(sequelize, DataTypes);
 const { Member, memberSchema } = require("./member")(sequelize, DataTypes);
@@ -29,6 +34,12 @@ const { Partner, partnerSchema } = require("./partner")(sequelize, DataTypes);
 Title.hasMany(Player, { foreignKey: "titleId" });
 Player.belongsTo(Title);
 
+Title.hasMany(Keyword, { foreignKey: "titleId" });
+Keyword.belongsTo(Title);
+
+Sequence.hasMany(Title, { foreignKey: "sequenceId" });
+Title.belongsTo(Sequence);
+
 Title.belongsToMany(Genre, { through: "GenreTitles" });
 Genre.belongsToMany(Title, { through: "GenreTitles" });
 
@@ -40,6 +51,8 @@ module.exports = {
     init,
 
     Title,
+    Sequence,
+    Keyword,
     Genre,
     Player,
     Member,
@@ -48,6 +61,8 @@ module.exports = {
     Partner,
 
     titleSchema,
+    sequenceSchema,
+    keywordSchema,
     genreSchema,
     playerSchema,
     memberSchema,
