@@ -181,7 +181,7 @@ _2022/04/13_
 
 ## Дизайн бази даних
 
-![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/ab0a5ef7-f6c3-4262-8802-f12392584351)
+![image](https://github.com/devils2ndself/unimay-backend/assets/71770433/d1535f25-7f0e-4d1e-ae36-e34ab7836e3f)
 
 ## [Архітектура](https://lucid.app/lucidchart/a0421e16-3de9-40a8-bfce-df7b7dd06143/edit?viewport_loc=-128%2C6%2C2016%2C968%2C0_0&invitationId=inv_03b17de1-7521-4256-883e-050b2b2b2d2a)
 
