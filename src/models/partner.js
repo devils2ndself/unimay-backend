@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: null,
         },
+        imageLink: {
+            type: DataTypes.STRING(2083),
+            allowNull: true,
+            defaultValue: null,
+        },
         link: {
             type: DataTypes.STRING(255),
             allowNull: true,
@@ -38,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         name: string().required("'name' is required").max(254),
         description: string().notRequired().max(2046),
         link: string().notRequired().max(254),
+        imageLink: string().notRequired().max(2082),
     });
 
     return { Partner, partnerSchema };

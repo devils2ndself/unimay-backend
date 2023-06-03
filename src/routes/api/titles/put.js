@@ -9,6 +9,8 @@ const createTitle = require("./post");
 
 module.exports = async (req, res) => {
     try {
+        // TODO: keywords, sequence
+
         const title = await db.Title.findByPk(req.params.id, {
             include: {
                 model: db.Genre,
@@ -32,12 +34,20 @@ module.exports = async (req, res) => {
         if (req.params?.id) {
             data.id = req.params.id;
         }
-        if (req.file) {
+        if (!data.imageLink && req.file) {
             data.image = req.file.buffer;
             data.imageType = req.file.mimetype;
+            data.imageLink = null;
+        } else {
+            data.image = null;
+            data.imageType = null;
         }
 
-        if (data.imageType && !data.imageType.startsWith("image/")) {
+        if (
+            !data.imageLink &&
+            data.imageType &&
+            !data.imageType.startsWith("image/")
+        ) {
             throw new ValidationError("File is not an image");
         }
 
@@ -79,11 +89,17 @@ module.exports = async (req, res) => {
 
         await title.reload({ include: [db.Genre, db.Player] });
 
-        const response = { ...title.dataValues };
+        const response = title.get({ plain: true });
         delete response.image;
         delete response.imageType;
-        response.imageURL =
-            req.protocol + "://" + req.get("host") + req.originalUrl + "/image";
+        if (!response.imageLink) {
+            response.imageLink =
+                req.protocol +
+                "://" +
+                req.get("host") +
+                req.originalUrl +
+                "/image";
+        }
 
         res.status(201).json(
             createSuccessResponse({
