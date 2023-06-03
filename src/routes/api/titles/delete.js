@@ -7,6 +7,8 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
+        // TODO: keywords
+
         const title = await db.Title.findByPk(req.params.id);
 
         if (!title) {

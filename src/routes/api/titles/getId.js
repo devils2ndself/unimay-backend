@@ -7,6 +7,8 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
+        // TODO: sequence
+
         const title = await db.Title.findByPk(req.params.id, {
             attributes: { exclude: ["image", "imageType"] },
             include: [
@@ -16,7 +18,17 @@ module.exports = async (req, res) => {
                 },
                 db.Player,
             ],
+            plain: true,
         });
+
+        if (!title.imageLink) {
+            title.imageLink =
+                req.protocol +
+                "://" +
+                req.get("host") +
+                req.originalUrl +
+                "/image";
+        }
 
         if (!title) {
             res.status(404).json(createErrorResponse(404, "title not found"));

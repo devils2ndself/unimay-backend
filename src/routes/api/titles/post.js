@@ -8,6 +8,8 @@ const { ValidationError } = require("yup");
 
 module.exports = async (req, res) => {
     try {
+        // TODO: keywords, sequence
+
         if (req.body.genres) {
             req.body.genres = Array.isArray(req.body.genres)
                 ? req.body.genres
@@ -17,12 +19,16 @@ module.exports = async (req, res) => {
         if (req.params?.id) {
             data.id = req.params.id;
         }
-        if (req.file) {
+        if (!data.imageLink && req.file) {
             data.image = req.file.buffer;
             data.imageType = req.file.mimetype;
         }
 
-        if (data.imageType && !data.imageType.startsWith("image/")) {
+        if (
+            !data.imageLink &&
+            data.imageType &&
+            !data.imageType.startsWith("image/")
+        ) {
             throw new ValidationError("File is not an image");
         }
 
@@ -67,7 +73,9 @@ module.exports = async (req, res) => {
         const response = { ...title.dataValues };
         delete response.image;
         delete response.imageType;
-        response.imageURL = location + "/image";
+        if (!response.imageLink) {
+            response.imageLink = location + "/image";
+        }
 
         res.status(201)
             .set({

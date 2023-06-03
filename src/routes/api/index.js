@@ -27,6 +27,10 @@ router.post("/genres", upload.none(), require("./genres/post"));
 router.delete("/genres/:id", require("./genres/delete"));
 router.put("/genres/:id", upload.none(), require("./genres/put"));
 
+// TODO: sequence: get, getId, post, put, delete
+
+// TODO: keywords: get, postForTitle, delete
+
 // TODO: members + links: delete, put
 
 // TODO: services: delete, put
