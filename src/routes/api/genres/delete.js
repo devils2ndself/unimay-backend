@@ -1,3 +1,34 @@
+/**
+ * @swagger
+ * /api/genres/{id}:
+ *  delete:
+ *      summary: Delete Genre by id
+ *      tags: [Genres]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *            required: true
+ *            description: ID of the Genre to be deleted
+ *      responses:
+ *          200:
+ *              description: Deletion confirmation
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              message:
+ *                                  type: string
+ *                              data:
+ *                                  type: object
+ *          500:
+ *              description: Some server error
+ */
+
 const logger = require("../../../logger");
 const {
     createSuccessResponse,
