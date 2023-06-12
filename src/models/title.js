@@ -65,5 +65,16 @@ module.exports = (sequelize, DataTypes) => {
         imageLink: string().notRequired().max(2082),
     });
 
-    return { Title, titleSchema };
+    const titleUpdateSchema = object({
+        name: string().max(254),
+        country: string().notRequired().max(254),
+        year: number().notRequired().min(0).max(3000),
+        description: string().notRequired().max(2046),
+        directors: string().notRequired().max(254),
+        actors: string().notRequired().max(254),
+        genres: array().optional().of(string()),
+        imageLink: string().notRequired().max(2082),
+    });
+
+    return { Title, titleSchema, titleUpdateSchema };
 };

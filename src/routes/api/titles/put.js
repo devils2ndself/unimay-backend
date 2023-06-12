@@ -17,7 +17,7 @@
  *          content:
  *               multipart/form-data:
  *                  schema:
- *                      $ref: '#/components/schemas/UpdateCreateTitle'
+ *                      $ref: '#/components/schemas/UpdateTitle'
  *      responses:
  *          200:
  *              description: Updated Title
@@ -62,7 +62,7 @@ const createTitle = require("./post");
 
 module.exports = async (req, res) => {
     try {
-        // TODO: keywords, sequence
+        // TODO: sequence
 
         const title = await db.Title.findByPk(req.params.id, {
             include: {
@@ -81,9 +81,9 @@ module.exports = async (req, res) => {
         req.body.genres = Array.isArray(req.body.genres)
             ? req.body.genres.filter((el) => el)
             : req.body.genres
-            ? [req.body.genres]
+            ? req.body.genres.split(",").filter((el) => el)
             : [];
-        const data = await db.titleSchema.validate(req.body);
+        const data = await db.titleUpdateSchema.validate(req.body);
         if (req.params?.id) {
             data.id = req.params.id;
         }

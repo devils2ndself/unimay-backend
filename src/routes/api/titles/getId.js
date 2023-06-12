@@ -46,6 +46,7 @@ module.exports = async (req, res) => {
                     through: { attributes: [] },
                 },
                 db.Player,
+                db.Keyword,
             ],
             plain: true,
         });
