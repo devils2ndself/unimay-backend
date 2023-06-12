@@ -4,6 +4,17 @@
  *  get:
  *      summary: Get all Titles
  *      tags: [Titles]
+ *      parameters:
+ *          - in: query
+ *            name: search
+ *            schema:
+ *              type: string
+ *            description: Search by keywords
+ *          - in: query
+ *            name: genres
+ *            schema:
+ *              type: string
+ *            description: Comma-separated genreId list
  *      responses:
  *          200:
  *              description: List of all existing titles
@@ -28,14 +39,74 @@ const {
     createErrorResponse,
 } = require("../../../response");
 const db = require("../../../models");
+const { Op } = require("sequelize");
 
 module.exports = async (req, res) => {
     try {
-        // TODO: search (keywords), genres filter, pagination?, sorting
+        const search = req.query.search;
+        const genres = req.query.genres
+            ? req.query.genres?.split(",").filter((el) => el)
+            : [];
+
+        let titleIds = null;
+
+        if (Array.isArray(genres) && genres.length > 0) {
+            const genreIds = await db.Genre.findAll({
+                attributes: [],
+                include: [
+                    {
+                        attributes: ["id"],
+                        model: db.Title,
+                        through: { attributes: [] },
+                    },
+                ],
+                where: {
+                    id: genres,
+                },
+                raw: true,
+                nest: true,
+            });
+
+            titleIds = genreIds.map((el) => el?.titles?.id).filter((el) => el);
+        }
+
+        if (search) {
+            let searchIds = await db.Keyword.findAll({
+                attributes: [],
+                include: [
+                    {
+                        attributes: ["id"],
+                        model: db.Title,
+                    },
+                ],
+                where: {
+                    name: {
+                        [Op.substring]: search,
+                    },
+                },
+                raw: true,
+                nest: true,
+            });
+
+            searchIds = searchIds.map((el) => el?.title?.id).filter((el) => el);
+
+            titleIds =
+                titleIds == null
+                    ? searchIds
+                    : titleIds.filter((el) => searchIds.includes(el));
+        }
 
         const titles = await db.Title.findAll({
             attributes: { exclude: ["image", "imageType"] },
-            include: [{ model: db.Genre, through: { attributes: [] } }],
+            include: [
+                {
+                    model: db.Genre,
+                    through: { attributes: [] },
+                },
+                db.Keyword,
+            ],
+            order: [["year", "DESC"], "name"],
+            where: titleIds != null ? { id: titleIds } : null,
         });
 
         const response = [];

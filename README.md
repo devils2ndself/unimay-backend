@@ -81,38 +81,11 @@ npm start
     }
     ```
 
-### Endpoints
-
--   Titles
-
-    -   GET - All: `/api/titles`
-    -   GET - By Id: `/api/titles/:id`
-    -   GET - Image by Id: `/api/titles/:id/image`
-    -   POST: `/api/titles`
-    -   DELETE: `/api/titles/:id`
-    -   PUT: `/api/titles/:id`
-
--   Players
-
-    -   GET - All: `/api/players`
-    -   POST - By title and Id: `/api/titles/:titleId/players/:id`
-    -   PUT - By title and Id: `/api/titles/:titleId/players/:id`
-    -   DELETE - Title is not needed: `/api/players/:id`
-
-    _Note_: `embedLink` refers to the `src` attribute of `iframe`
-
--   Genres
-
-    -   GET - All: `/api/genres`
-    -   POST: `/api/genres`
-    -   PUT: `/api/genres/:id`
-    -   DELETE: `/api/genres/:id`
-
-## Request structure
+## Endpoints and Request structure
 
 Requests should be of type `multipart/form-data` (or JavaScript's `FormData`).
 
-Field names for the schema can be found in the Database Design section below.
+**See /docs endpoint for Swagger UI with info on operations and request/response schemas**
 
 # System Design (in Ukrainian)
 

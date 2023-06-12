@@ -22,14 +22,20 @@ router.put(
 router.delete("/players/:id", require("./titles/players/delete"));
 router.get("/players", require("./titles/players/get")); // For checking if any hanging players are present
 
+router.post(
+    "/titles/:titleId/keywords",
+    upload.none(),
+    require("./titles/keywords/post")
+);
+router.delete("/keywords/:id", require("./titles/keywords/delete"));
+router.get("/keywords", require("./titles/keywords/get")); // For checking if any hanging keywords are present
+
+// TODO: sequence: get, getId, post, put, delete
+
 router.get("/genres", require("./genres/get"));
 router.post("/genres", upload.none(), require("./genres/post"));
 router.delete("/genres/:id", require("./genres/delete"));
 router.put("/genres/:id", upload.none(), require("./genres/put"));
-
-// TODO: sequence: get, getId, post, put, delete
-
-// TODO: keywords: get, postForTitle, delete
 
 // TODO: members + links: delete, put
 

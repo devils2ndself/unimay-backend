@@ -41,12 +41,12 @@ const { ValidationError } = require("yup");
 
 module.exports = async (req, res) => {
     try {
-        // TODO: keywords, sequence
+        // TODO: sequence
 
         if (req.body.genres) {
             req.body.genres = Array.isArray(req.body.genres)
                 ? req.body.genres
-                : [req.body.genres];
+                : req.body.genres.split(",").filter((el) => el);
         }
         const data = await db.titleSchema.validate(req.body);
         if (req.params?.id) {
@@ -90,10 +90,18 @@ module.exports = async (req, res) => {
                 await title.setGenres(data.genres, { transaction: t });
             }
 
+            await db.Keyword.create(
+                {
+                    titleId: title.dataValues.id,
+                    name: title.dataValues.name,
+                },
+                { transaction: t }
+            );
+
             return title;
         });
 
-        await title.reload({ include: [db.Genre, db.Player] });
+        await title.reload({ include: [db.Genre, db.Player, db.Keyword] });
 
         const location =
             req.protocol +

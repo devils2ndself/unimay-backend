@@ -43,7 +43,26 @@ const specs = swaggerJsdoc(options);
 const router = express.Router();
 
 router.use(`/api`, require("./api"));
-router.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
+router.use(
+    "/docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs, {
+        swaggerOptions: {
+            operationsSorter: (a, b) => {
+                var methodsOrder = ["get", "post", "put", "delete"];
+                var result =
+                    methodsOrder.indexOf(a.get("method")) -
+                    methodsOrder.indexOf(b.get("method"));
+
+                if (result === 0) {
+                    result = a.get("path").localeCompare(b.get("path"));
+                }
+
+                return result;
+            },
+        },
+    })
+);
 
 router.get("/", (req, res) => {
     // Health-check = no-caches

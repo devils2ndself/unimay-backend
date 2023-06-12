@@ -192,7 +192,7 @@ module.exports = {
  *              genres:
  *                  type: array
  *                  items:
- *                      type: string
+ *                      type: integer
  *                  description: Array of Genre ids
  *              description:
  *                  type: string
@@ -285,4 +285,35 @@ module.exports = {
  *              name:
  *                  type: string
  *                  description: Genre name
+ *
+ *  ### Keywords ###
+ *
+ *      GetKeyword:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Keyword name
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      UpdateCreateKeyword:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Keyword name
  */
