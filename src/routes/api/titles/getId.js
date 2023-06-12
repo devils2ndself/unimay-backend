@@ -1,3 +1,32 @@
+/**
+ * @swagger
+ * /api/titles/{id}:
+ *  get:
+ *      summary: Get Title by id
+ *      tags: [Titles]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *            required: true
+ *            description: Title id
+ *      responses:
+ *          200:
+ *              description: Title with players
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              data:
+ *                                  $ref: '#/components/schemas/GetTitleWithPlayer'
+ *          500:
+ *              description: Some server error
+ */
+
 const logger = require("../../../logger");
 const {
     createSuccessResponse,

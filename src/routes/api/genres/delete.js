@@ -10,7 +10,7 @@
  *            schema:
  *              type: integer
  *            required: true
- *            description: ID of the Genre to be deleted
+ *            description: Genre id
  *      responses:
  *          200:
  *              description: Deletion confirmation

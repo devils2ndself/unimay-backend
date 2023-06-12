@@ -1,3 +1,36 @@
+/**
+ * @swagger
+ * /api/titles:
+ *  post:
+ *      summary: Create Title
+ *      tags: [Titles]
+ *      requestBody:
+ *          description: Title information
+ *          required: true
+ *          content:
+ *               multipart/form-data:
+ *                  schema:
+ *                      $ref: '#/components/schemas/UpdateCreateTitle'
+ *      responses:
+ *          201:
+ *              description: Created Title
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              message:
+ *                                  type: string
+ *                              data:
+ *                                  $ref: '#/components/schemas/GetTitleWithPlayer'
+ *          400:
+ *              description: Validation error
+ *          500:
+ *              description: Some server error
+ */
+
 const logger = require("../../../logger");
 const {
     createSuccessResponse,

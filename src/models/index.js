@@ -84,7 +84,7 @@ module.exports = {
  *              - name
  *          properties:
  *              id:
- *                  type: number
+ *                  type: integer
  *                  description: Auto-incremented SQL id
  *              name:
  *                  type: string
@@ -104,7 +104,7 @@ module.exports = {
  *                  type: string
  *                  description: Country where the title was created in
  *              year:
- *                  type: int
+ *                  type: integer
  *                  description: Year it came out
  *              directors:
  *                  type: string
@@ -112,6 +112,9 @@ module.exports = {
  *              actors:
  *                  type: string
  *                  description: Who dubbed the title
+ *              sequenceId:
+ *                  type: integer
+ *                  description: Next seasons Sequence id
  *              createdAt:
  *                  type: string
  *                  format: date
@@ -127,7 +130,7 @@ module.exports = {
  *              - name
  *          properties:
  *              id:
- *                  type: number
+ *                  type: integer
  *                  description: Auto-incremented SQL id
  *              name:
  *                  type: string
@@ -152,7 +155,7 @@ module.exports = {
  *                  type: string
  *                  description: Country where the title was created in
  *              year:
- *                  type: int
+ *                  type: integer
  *                  description: Year it came out
  *              directors:
  *                  type: string
@@ -160,6 +163,9 @@ module.exports = {
  *              actors:
  *                  type: string
  *                  description: Who dubbed the title
+ *              sequenceId:
+ *                  type: integer
+ *                  description: Next seasons Sequence id
  *              createdAt:
  *                  type: string
  *                  format: date
@@ -184,7 +190,9 @@ module.exports = {
  *                  type: file
  *                  description: Image cover stored in DB (not preferred)
  *              genres:
- *                  type: string[]
+ *                  type: array
+ *                  items:
+ *                      type: string
  *                  description: Array of Genre ids
  *              description:
  *                  type: string
@@ -193,7 +201,7 @@ module.exports = {
  *                  type: string
  *                  description: Country where the title was created in
  *              year:
- *                  type: int
+ *                  type: integer
  *                  description: Year it came out
  *              directors:
  *                  type: string
@@ -211,7 +219,7 @@ module.exports = {
  *              - embedLink
  *          properties:
  *              id:
- *                  type: number
+ *                  type: integer
  *                  description: Auto-incremented SQL id
  *              name:
  *                  type: string
@@ -255,7 +263,7 @@ module.exports = {
  *              - name
  *          properties:
  *              id:
- *                  type: number
+ *                  type: integer
  *                  description: Auto-incremented SQL id
  *              name:
  *                  type: string

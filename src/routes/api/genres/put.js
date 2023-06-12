@@ -10,7 +10,7 @@
  *            schema:
  *              type: integer
  *            required: true
- *            description: ID of the Genre to be updated
+ *            description: Genre id
  *      requestBody:
  *          description: Genre information
  *          required: true
