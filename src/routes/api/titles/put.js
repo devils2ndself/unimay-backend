@@ -17,7 +17,7 @@
  *          content:
  *               multipart/form-data:
  *                  schema:
- *                      $ref: '#/components/schemas/UpdateCreateTitle'
+ *                      $ref: '#/components/schemas/UpdateTitle'
  *      responses:
  *          200:
  *              description: Updated Title
@@ -83,7 +83,7 @@ module.exports = async (req, res) => {
             : req.body.genres
             ? req.body.genres.split(",").filter((el) => el)
             : [];
-        const data = await db.titleSchema.validate(req.body);
+        const data = await db.titleUpdateSchema.validate(req.body);
         if (req.params?.id) {
             data.id = req.params.id;
         }

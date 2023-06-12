@@ -10,7 +10,7 @@
  *          content:
  *               multipart/form-data:
  *                  schema:
- *                      $ref: '#/components/schemas/UpdateCreateTitle'
+ *                      $ref: '#/components/schemas/CreateTitle'
  *      responses:
  *          201:
  *              description: Created Title

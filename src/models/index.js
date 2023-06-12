@@ -15,7 +15,10 @@ async function init() {
     await sequelize.sync();
 }
 
-const { Title, titleSchema } = require("./title")(sequelize, DataTypes);
+const { Title, titleSchema, titleUpdateSchema } = require("./title")(
+    sequelize,
+    DataTypes
+);
 const { Sequence, sequenceSchema } = require("./sequence")(
     sequelize,
     DataTypes
@@ -61,6 +64,7 @@ module.exports = {
     Partner,
 
     titleSchema,
+    titleUpdateSchema,
     sequenceSchema,
     keywordSchema,
     genreSchema,
@@ -175,10 +179,43 @@ module.exports = {
  *                  format: date
  *                  description: Automatic timestamp
  *
- *      UpdateCreateTitle:
+ *      CreateTitle:
  *          type: object
  *          required:
  *              - name
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Title's name
+ *              imageLink:
+ *                  type: string
+ *                  description: Image cover from the internet (preferred)
+ *              image:
+ *                  type: file
+ *                  description: Image cover stored in DB (not preferred)
+ *              genres:
+ *                  type: array
+ *                  items:
+ *                      type: integer
+ *                  description: Array of Genre ids
+ *              description:
+ *                  type: string
+ *                  description: Title's description
+ *              country:
+ *                  type: string
+ *                  description: Country where the title was created in
+ *              year:
+ *                  type: integer
+ *                  description: Year it came out
+ *              directors:
+ *                  type: string
+ *                  description: Who made the title
+ *              actors:
+ *                  type: string
+ *                  description: Who dubbed the title
+ *
+ *      UpdateTitle:
+ *          type: object
  *          properties:
  *              name:
  *                  type: string
