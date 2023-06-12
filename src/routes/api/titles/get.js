@@ -1,3 +1,27 @@
+/**
+ * @swagger
+ * /api/titles:
+ *  get:
+ *      summary: Get all Titles
+ *      tags: [Titles]
+ *      responses:
+ *          200:
+ *              description: List of all existing titles
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              data:
+ *                                  type: array
+ *                                  items:
+ *                                      $ref: '#/components/schemas/GetTitle'
+ *          500:
+ *              description: Some server error
+ */
+
 const logger = require("../../../logger");
 const {
     createSuccessResponse,

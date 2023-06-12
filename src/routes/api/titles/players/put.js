@@ -1,3 +1,62 @@
+/**
+ * @swagger
+ * /api/titles/{titleId}/players/{id}:
+ *  put:
+ *      summary: Update Player by id
+ *      tags: [Players]
+ *      parameters:
+ *          - in: path
+ *            name: titleId
+ *            schema:
+ *              type: integer
+ *            required: true
+ *            description: Title to have new player
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *            required: true
+ *            description: Player id
+ *      requestBody:
+ *          description: Player information
+ *          required: true
+ *          content:
+ *               multipart/form-data:
+ *                  schema:
+ *                      $ref: '#/components/schemas/UpdateCreatePlayer'
+ *      responses:
+ *          200:
+ *              description: Updated Player
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              message:
+ *                                  type: string
+ *                              data:
+ *                                  $ref: '#/components/schemas/GetPlayer'
+ *          201:
+ *              description: Created Player
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              message:
+ *                                  type: string
+ *                              data:
+ *                                  $ref: '#/components/schemas/GetPlayer'
+ *          400:
+ *              description: Validation error
+ *          500:
+ *              description: Some server error
+ */
+
 const logger = require("../../../../logger");
 const {
     createSuccessResponse,

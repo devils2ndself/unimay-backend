@@ -70,3 +70,219 @@ module.exports = {
     serviceSchema,
     partnerSchema,
 };
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *
+ *  ### Titles ###
+ *
+ *      GetTitle:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Title's name
+ *              imageLink:
+ *                  type: string
+ *                  description: Image link whether from internet or
+ *              genres:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/GetGenre'
+ *                  description: Array of Genre ids
+ *              description:
+ *                  type: string
+ *                  description: Title's description
+ *              country:
+ *                  type: string
+ *                  description: Country where the title was created in
+ *              year:
+ *                  type: integer
+ *                  description: Year it came out
+ *              directors:
+ *                  type: string
+ *                  description: Who made the title
+ *              actors:
+ *                  type: string
+ *                  description: Who dubbed the title
+ *              sequenceId:
+ *                  type: integer
+ *                  description: Next seasons Sequence id
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      GetTitleWithPlayer:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Title's name
+ *              imageLink:
+ *                  type: string
+ *                  description: Image link whether from internet or
+ *              genres:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/GetGenre'
+ *                  description: Array of Genre ids
+ *              players:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/GetPlayer'
+ *                  description: Array of Genre ids
+ *              description:
+ *                  type: string
+ *                  description: Title's description
+ *              country:
+ *                  type: string
+ *                  description: Country where the title was created in
+ *              year:
+ *                  type: integer
+ *                  description: Year it came out
+ *              directors:
+ *                  type: string
+ *                  description: Who made the title
+ *              actors:
+ *                  type: string
+ *                  description: Who dubbed the title
+ *              sequenceId:
+ *                  type: integer
+ *                  description: Next seasons Sequence id
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      UpdateCreateTitle:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Title's name
+ *              imageLink:
+ *                  type: string
+ *                  description: Image cover from the internet (preferred)
+ *              image:
+ *                  type: file
+ *                  description: Image cover stored in DB (not preferred)
+ *              genres:
+ *                  type: array
+ *                  items:
+ *                      type: string
+ *                  description: Array of Genre ids
+ *              description:
+ *                  type: string
+ *                  description: Title's description
+ *              country:
+ *                  type: string
+ *                  description: Country where the title was created in
+ *              year:
+ *                  type: integer
+ *                  description: Year it came out
+ *              directors:
+ *                  type: string
+ *                  description: Who made the title
+ *              actors:
+ *                  type: string
+ *                  description: Who dubbed the title
+ *
+ * ### Players ###
+ *
+ *      GetPlayer:
+ *          type: object
+ *          required:
+ *              - name
+ *              - embedLink
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Player's name
+ *              embedLink:
+ *                  type: string
+ *                  description: URL to be inserted into an iframe tag
+ *              source:
+ *                  type: string
+ *                  description: What website this is from (Youtube | Voidboost)
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      UpdateCreatePlayer:
+ *          type: object
+ *          required:
+ *              - name
+ *              - embedLink
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Player's name
+ *              embedLink:
+ *                  type: string
+ *                  description: URL to be inserted into an iframe tag
+ *              source:
+ *                  type: string
+ *                  description: What website this is from (Youtube | Voidboost)
+ *
+ *  ### Genres ###
+ *
+ *      GetGenre:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Genre name
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      UpdateCreateGenre:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Genre name
+ */
