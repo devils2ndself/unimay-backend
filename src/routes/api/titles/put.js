@@ -62,8 +62,6 @@ const createTitle = require("./post");
 
 module.exports = async (req, res) => {
     try {
-        // TODO: sequence
-
         const title = await db.Title.findByPk(req.params.id, {
             include: {
                 model: db.Genre,

@@ -1,19 +1,19 @@
 /**
  * @swagger
- * /api/titles/{id}:
+ * /api/sequences/{id}:
  *  get:
- *      summary: Get Title by id
- *      tags: [Titles]
+ *      summary: Get all Sequences with associated Titles
+ *      tags: [Sequences]
  *      parameters:
  *          - in: path
  *            name: id
  *            schema:
  *              type: integer
  *            required: true
- *            description: Title id
+ *            description: Sequence id
  *      responses:
  *          200:
- *              description: Title with players
+ *              description: List of all existing sequences
  *              content:
  *                  application/json:
  *                      schema:
@@ -22,7 +22,9 @@
  *                              status:
  *                                  type: string
  *                              data:
- *                                  $ref: '#/components/schemas/GetTitleWithPlayer'
+ *                                  type: array
+ *                                  items:
+ *                                      $ref: '#/components/schemas/GetSequence'
  *          404:
  *              description: Not found
  *          500:
@@ -38,37 +40,27 @@ const db = require("../../../models");
 
 module.exports = async (req, res) => {
     try {
-        const title = await db.Title.findByPk(req.params.id, {
-            attributes: { exclude: ["image", "imageType"] },
+        const sequence = await db.Sequence.findByPk(req.params.id, {
             include: [
                 {
-                    model: db.Genre,
-                    through: { attributes: [] },
-                },
-                db.Player,
-                db.Keyword,
-                {
-                    model: db.Sequence,
-                    include: [
-                        {
-                            model: db.Title,
-                            attributes: { exclude: ["image", "imageType"] },
-                            order: [["year", "DESC"], "name"],
-                            plain: true,
-                        },
-                    ],
+                    model: db.Title,
+                    attributes: {
+                        exclude: ["image", "imageType"],
+                    },
                     plain: true,
                 },
             ],
             plain: true,
         });
 
-        if (!title) {
-            res.status(404).json(createErrorResponse(404, "title not found"));
+        if (!sequence) {
+            res.status(404).json(
+                createErrorResponse(404, "sequence not found")
+            );
             return;
         }
 
-        for (let seqTitle of title.sequence.titles) {
+        for (let seqTitle of sequence.titles) {
             if (!seqTitle.imageLink) {
                 seqTitle.imageLink =
                     req.protocol +
@@ -78,16 +70,7 @@ module.exports = async (req, res) => {
             }
         }
 
-        if (!title.imageLink) {
-            title.imageLink =
-                req.protocol +
-                "://" +
-                req.get("host") +
-                req.originalUrl +
-                "/image";
-        }
-
-        res.status(200).json(createSuccessResponse({ data: title }));
+        res.status(200).json(createSuccessResponse({ data: sequence }));
     } catch (error) {
         logger.warn(error);
         res.status(500).json(createErrorResponse(500, "internal error"));

@@ -100,7 +100,7 @@ module.exports = {
  *                  type: array
  *                  items:
  *                      $ref: '#/components/schemas/GetGenre'
- *                  description: Array of Genre ids
+ *                  description: Array of Genres
  *              description:
  *                  type: string
  *                  description: Title's description
@@ -146,12 +146,12 @@ module.exports = {
  *                  type: array
  *                  items:
  *                      $ref: '#/components/schemas/GetGenre'
- *                  description: Array of Genre ids
+ *                  description: Array of Genres
  *              players:
  *                  type: array
  *                  items:
  *                      $ref: '#/components/schemas/GetPlayer'
- *                  description: Array of Genre ids
+ *                  description: Array of Players
  *              description:
  *                  type: string
  *                  description: Title's description
@@ -353,4 +353,69 @@ module.exports = {
  *              name:
  *                  type: string
  *                  description: Keyword name
+ *
+ *  ### Sequences ###
+ *
+ *      GetSequence:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Sequence name
+ *              description:
+ *                  type: string
+ *                  description: Sequence description
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      GetSequenceWithTitles:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              id:
+ *                  type: integer
+ *                  description: Auto-incremented SQL id
+ *              name:
+ *                  type: string
+ *                  description: Sequence name
+ *              description:
+ *                  type: string
+ *                  description: Sequence description
+ *              titles:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/GetTitle'
+ *                  description: Array of Titles
+ *              createdAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *              updatedAt:
+ *                  type: string
+ *                  format: date
+ *                  description: Automatic timestamp
+ *
+ *      UpdateCreateSequence:
+ *          type: object
+ *          required:
+ *              - name
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: Sequence name
+ *              description:
+ *                  type: string
+ *                  description: Sequence description
  */
