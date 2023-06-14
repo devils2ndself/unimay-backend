@@ -76,11 +76,13 @@ module.exports = async (req, res) => {
             return;
         }
 
-        req.body.genres = Array.isArray(req.body.genres)
-            ? req.body.genres.filter((el) => el)
-            : req.body.genres
-            ? req.body.genres.split(",").filter((el) => el)
-            : [];
+        if (req.body.genres != undefined) {
+            req.body.genres = Array.isArray(req.body.genres)
+                ? req.body.genres.filter((el) => el)
+                : req.body.genres
+                ? req.body.genres.split(",").filter((el) => el)
+                : [];
+        }
         const data = await db.titleUpdateSchema.validate(req.body);
         if (req.params?.id) {
             data.id = req.params.id;
@@ -105,27 +107,31 @@ module.exports = async (req, res) => {
         let genresToAdd = [];
         let genresToRemove = [];
 
-        for (let genreId of data.genres) {
-            const genre = await db.Genre.findOne({
-                where: {
-                    id: genreId,
-                },
-            });
-            if (!genre) {
-                throw new ValidationError(
-                    `Genre with id ${genreId} does not exist`
-                );
+        if (data.genres) {
+            for (let genreId of data.genres) {
+                const genre = await db.Genre.findOne({
+                    where: {
+                        id: genreId,
+                    },
+                });
+                if (!genre) {
+                    throw new ValidationError(
+                        `Genre with id ${genreId} does not exist`
+                    );
+                }
             }
+
+            const existingGenres = title
+                .get({ plain: true })
+                .genres.map((el) => el.id.toString());
+
+            genresToRemove = existingGenres.filter(
+                (el) => !data.genres.includes(el)
+            );
+            genresToAdd = data.genres.filter(
+                (el) => !existingGenres.includes(el)
+            );
         }
-
-        const existingGenres = title
-            .get({ plain: true })
-            .genres.map((el) => el.id.toString());
-
-        genresToRemove = existingGenres.filter(
-            (el) => !data.genres.includes(el)
-        );
-        genresToAdd = data.genres.filter((el) => !existingGenres.includes(el));
 
         await db.sequelize.transaction(async (t) => {
             await title.update({ ...data }, { transaction: t });
