@@ -41,8 +41,6 @@ const { ValidationError } = require("yup");
 
 module.exports = async (req, res) => {
     try {
-        // TODO: sequence
-
         if (req.body.genres) {
             req.body.genres = Array.isArray(req.body.genres)
                 ? req.body.genres

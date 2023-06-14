@@ -49,7 +49,7 @@ router.use(
     swaggerUi.setup(specs, {
         swaggerOptions: {
             operationsSorter: (a, b) => {
-                var methodsOrder = ["get", "post", "put", "delete"];
+                var methodsOrder = ["get", "post", "put", "patch", "delete"];
                 var result =
                     methodsOrder.indexOf(a.get("method")) -
                     methodsOrder.indexOf(b.get("method"));
