@@ -18,14 +18,14 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: null,
         },
         embedLink: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.STRING(2083),
             allowNull: false,
         },
     });
 
     const playerSchema = object({
         name: string().required("'name' is required").max(254),
-        embedLink: string().required("'embedLink' is required").max(254),
+        embedLink: string().required("'embedLink' is required").max(2082),
         source: string().notRequired().max(254),
     });
 

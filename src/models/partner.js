@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: null,
         },
         link: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.STRING(2083),
             allowNull: true,
             defaultValue: null,
         },
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     const partnerSchema = object({
         name: string().required("'name' is required").max(254),
         description: string().notRequired().max(2046),
-        link: string().notRequired().max(254),
+        link: string().notRequired().max(2082),
         imageLink: string().notRequired().max(2082),
     });
 

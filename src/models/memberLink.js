@@ -8,18 +8,23 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
+        name: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+        },
         icon: {
             type: DataTypes.STRING(255),
             allowNull: true,
         },
         link: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.STRING(2083),
             allowNull: false,
         },
     });
 
     const memberLinkSchema = object({
-        link: string().required("'link' is required").max(254),
+        name: string().required("'name' is required").max(254),
+        link: string().required("'link' is required").max(2082),
         icon: string().notRequired().max(254),
     });
 

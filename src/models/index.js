@@ -12,7 +12,10 @@ const sequelize = new Sequelize(
 );
 
 async function init() {
-    await sequelize.sync();
+    let configuration = dbConfig.alterTables
+        ? { force: false, alter: true }
+        : {};
+    await sequelize.sync(configuration);
 }
 
 const { Title, titleSchema, titleUpdateSchema } = require("./title")(

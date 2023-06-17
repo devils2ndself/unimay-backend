@@ -27,6 +27,14 @@ Before running the server, make sure that `database` (or schema) from `.env` exi
 
 The server will automatically create tables on first run.
 
+### Altering tables
+
+During development data models could be changed; however, by default the ORM is configured not to make any changes to tables. To proceed with alteration process, add the following into `.env` and restart the server:
+
+```
+DB_ALTER_TABLES=1
+```
+
 ## Downloading NPM packages
 
 Regular option:
