@@ -7,7 +7,7 @@ This project is the backend (REST API) for the Unimay Media website.
 The server requires an SQL database for operating.
 
 Make sure you have a `.env` file in the project root directotry with MySQL database information:
-asdsad
+hello
 ```
 DB_DATABASE=database
 DB_HOST=host
