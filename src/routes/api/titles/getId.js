@@ -63,12 +63,14 @@ module.exports = async (req, res) => {
             plain: true,
         });
 
+        console.log(title.sequence);
+
         if (!title) {
             res.status(404).json(createErrorResponse(404, "title not found"));
             return;
         }
 
-        for (let seqTitle of title.sequence.titles) {
+        for (let seqTitle of (title?.sequence?.titles || [])) {
             if (!seqTitle.imageLink) {
                 seqTitle.imageLink =
                     req.protocol +
@@ -78,7 +80,7 @@ module.exports = async (req, res) => {
             }
         }
 
-        if (!title.imageLink) {
+        if (!title?.imageLink) {
             title.imageLink =
                 req.protocol +
                 "://" +
